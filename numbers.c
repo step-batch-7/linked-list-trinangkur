@@ -9,17 +9,19 @@ void print_menu(void) {
 
 Status perform_list_operation(List_ptr list, char menu) {
   int num;
-  if (menu == 'a')
-  {
+  switch (menu) {
+    case 'a':
     printf("enter a value\n");
     scanf("%d",&num);
     return add_to_end(list,num);
-  }
-  if (menu == 'l') {
+
+    case 'l':
     display(list);
     return Success;
+
+    default:
+    return Failure;
   }
-  return Failure;
 }
 
 int main(void)
@@ -33,11 +35,11 @@ int main(void)
 
   while (menu != 'm') {
     status = perform_list_operation(list, menu);
-    // printf("%u\n",status);
     if (status == Failure) {
       printf("operation failed\n");
     }
     print_menu();
+    fflush(stdin);
     scanf("%c",&menu);
   }
   
