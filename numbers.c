@@ -6,6 +6,7 @@ void print_menu(void) {
   printf("(b) add a number to the start of the list\n");
   printf("(c) insert a number at a given position in the list\n");
   printf("(d) add a unique item on the list at the end\n");
+  printf("(e) remove a number from the beginning of the list\n");
   printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
 }
@@ -34,6 +35,9 @@ Status perform_list_operation(List_ptr list, char menu) {
     printf("enter a value\n");
     scanf("%d",&num);
     return add_unique(list,num);
+
+    case 'e':
+    return remove_from_start(list);
 
     case 'l':
     display(list);

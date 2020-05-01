@@ -102,6 +102,22 @@ Status add_unique(List_ptr list, int value) {
   return add_to_end(list,value);
 }
 
+Status remove_from_start(List_ptr list) {
+  if(list->count == 0) {
+    return Failure;
+  }
+
+  Node_ptr temp = list->head;
+  list->head = temp->next;
+  list->count--;
+
+  if(list->count == 0) {
+    list->last = NULL;
+  }
+  free(temp);
+  return Success;
+}
+
 void display(List_ptr list) {
   Node_ptr p_walk = list->head;
   while(p_walk != NULL)
