@@ -5,6 +5,7 @@ void print_menu(void) {
   printf("(a) add a number to the end of the list\n");
   printf("(b) add a number to the start of the list\n");
   printf("(c) insert a number at a given position in the list\n");
+  printf("(d) add a unique item on the list at the end\n");
   printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
 }
@@ -28,6 +29,11 @@ Status perform_list_operation(List_ptr list, char menu) {
     printf("enter a position\n");
     scanf("%d",&position);
     return insert_at(list,num,position);
+
+    case 'd':
+    printf("enter a value\n");
+    scanf("%d",&num);
+    return add_unique(list,num);
 
     case 'l':
     display(list);
