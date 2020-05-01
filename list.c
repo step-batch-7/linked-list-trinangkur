@@ -66,6 +66,12 @@ Status insert_at(List_ptr list, int value, int position) {
   if(position == 0) {
     return add_to_start(list, value);
   }
+  
+  if (position == list->count)
+  {
+    return add_to_end(list,value);
+  }
+  
   Node_ptr above_node = get_node(list,position - 1);
   Node_ptr new_node = create_node(value);
   Node_ptr temp = above_node->next;
