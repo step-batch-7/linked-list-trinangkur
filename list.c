@@ -33,6 +33,22 @@ Status add_to_end(List_ptr list, int value) {
   return Success;
 }
 
+Status add_to_start(List_ptr list, int value) { 
+  Node_ptr new_node = create_node(value);
+  if (new_node == NULL) {
+    return Failure;
+  }
+  Node_ptr temp = list->head;
+  list->head = new_node;
+  if (temp == NULL) {
+    list->last = new_node;
+  }else{
+    list->head->next = temp;
+  }
+  list->count += 1;
+  return Success;
+}
+
 void display(List_ptr list) {
   Node_ptr p_walk = list->head;
   while(p_walk != NULL)
