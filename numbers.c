@@ -8,6 +8,7 @@ void print_menu(void) {
   printf("(d) add a unique item on the list at the end\n");
   printf("(e) remove a number from the beginning of the list\n");
   printf("(f) remove a number from the end of the list\n");
+  printf("(g) remove a number from a given position in the list\n");
   printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
 }
@@ -30,18 +31,23 @@ Status perform_list_operation(List_ptr list, char menu) {
     scanf("%d",&num);
     printf("enter a position\n");
     scanf("%d",&position);
-    return insert_at(list,num,position);
+    return insert_at(list, num, position);
 
     case 'd':
     printf("enter a value\n");
     scanf("%d",&num);
-    return add_unique(list,num);
+    return add_unique(list, num);
 
     case 'e':
     return remove_from_start(list);
 
     case 'f':
     return remove_from_end(list);
+
+    case 'g':
+    printf("enter a position\n");
+    scanf("%d", &position);
+    return remove_at(list, position);
 
     case 'l':
     display(list);

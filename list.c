@@ -135,6 +135,27 @@ Status remove_from_end(List_ptr list) {
   return Success;
 }
 
+Status remove_at(List_ptr list, int position) {
+  if(position >= list->count || position < 0) {
+    return Failure;
+  }
+  if(position == 0) {
+    return remove_from_start(list);
+  }
+
+  if (position == list->count - 1) {
+    return remove_from_end(list);
+  }
+
+  Node_ptr above_node = get_node(list,position - 1);
+  Node_ptr temp = above_node->next;
+  above_node->next = temp->next;
+  list->count--;
+  free(temp);
+  return Success;
+}
+
+
 void display(List_ptr list) {
   Node_ptr p_walk = list->head;
   while(p_walk != NULL)
