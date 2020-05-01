@@ -18,6 +18,16 @@ Node_ptr create_node(int value) {
   return new_node;
 }
 
+
+Node_ptr get_node(List_ptr list, int position) {
+  Node_ptr p_walk = list->head;
+  for(int i = 0; i < position; i++)
+  {
+    p_walk = p_walk->next;
+  }
+  return p_walk;
+}
+
 Status add_to_end(List_ptr list, int value) { 
   Node_ptr new_node = create_node(value);
   if (new_node == NULL) {
@@ -46,6 +56,22 @@ Status add_to_start(List_ptr list, int value) {
     list->head->next = temp;
   }
   list->count += 1;
+  return Success;
+}
+
+Status insert_at(List_ptr list, int value, int position) {
+  if(position > list->count || position < 0) {
+    return Failure;
+  }
+  if(position == 0) {
+    return add_to_start(list, value);
+  }
+  Node_ptr above_node = get_node(list,position - 1);
+  Node_ptr new_node = create_node(value);
+  Node_ptr temp = above_node->next;
+  new_node->next = temp;
+  above_node->next = new_node;
+  list->count++;
   return Success;
 }
 
