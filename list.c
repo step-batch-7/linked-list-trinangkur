@@ -182,6 +182,35 @@ Status remove_first_occurrence(List_ptr list, int value) {
 }
 
 
+Status remove_all_occurrences(List_ptr list, int value) {
+  if (list->count == 0) {
+    return Failure;
+  }
+  Status status = Failure;
+  Node_ptr p_walk = list->head;
+  int i = 1;
+  while(i < list->count - 1) {
+    if (p_walk->next->value == value) {
+      Node_ptr temp = p_walk->next;
+      p_walk->next = temp->next;
+      free(temp);
+      list->count--;
+      status = Success;
+    }else {
+      p_walk = p_walk->next;
+      i++;
+    }
+  }
+  if (list->head->value == value) {
+    status = remove_from_start(list);
+  }
+  if (list->last->value == value) {
+    status = remove_from_end(list);
+  }
+  return status;
+}
+
+
 void display(List_ptr list) {
   Node_ptr p_walk = list->head;
   while(p_walk != NULL)
