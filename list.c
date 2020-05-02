@@ -210,6 +210,20 @@ Status remove_all_occurrences(List_ptr list, int value) {
   return status;
 }
 
+Status clear_list(List_ptr list) {
+  Node_ptr p_walk = list->head;
+  while (p_walk != NULL)
+  {
+    Node_ptr temp = p_walk;
+    p_walk = temp->next;
+    free(temp);
+  }
+  list->head = NULL;
+  list->last = NULL;
+  list->count = 0;
+  return Success;
+}
+
 
 void display(List_ptr list) {
   Node_ptr p_walk = list->head;
