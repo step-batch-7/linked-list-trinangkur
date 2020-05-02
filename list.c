@@ -204,7 +204,7 @@ Status remove_all_occurrences(List_ptr list, int value) {
   if (list->head->value == value) {
     status = remove_from_start(list);
   }
-  if (list->last->value == value) {
+  if (list->count != 0 && list->last->value == value) {
     status = remove_from_end(list);
   }
   return status;
