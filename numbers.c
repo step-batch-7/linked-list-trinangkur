@@ -9,6 +9,7 @@ void print_menu(void) {
   printf("(e) remove a number from the beginning of the list\n");
   printf("(f) remove a number from the end of the list\n");
   printf("(g) remove a number from a given position in the list\n");
+  printf("(h) remove first occurrence of a number\n");
   printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
 }
@@ -48,6 +49,11 @@ Status perform_list_operation(List_ptr list, char menu) {
     printf("enter a position\n");
     scanf("%d", &position);
     return remove_at(list, position);
+
+    case 'h':
+    printf("enter a value\n");
+    scanf("%d", &num);
+    return remove_first_occurrence(list, num);
 
     case 'l':
     display(list);
