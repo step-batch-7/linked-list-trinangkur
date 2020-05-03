@@ -12,6 +12,7 @@ void print_menu(void) {
   printf("(h) remove first occurrence of a number\n");
   printf("(i) remove all occurrences of a number\n");
   printf("(j) clear the whole list\n");
+  printf("(k) check if a number exists in the list\n");
   printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
 }
@@ -64,6 +65,16 @@ Status perform_list_operation(List_ptr list, char menu) {
 
     case 'j':
     return clear_list(list);
+
+    case 'k':
+    printf("enter a value\n");
+    scanf("%d", &num);
+    if(search_value(list, num) == -1){
+      printf("value is not present in the list\n");
+      return Success;
+    }
+    printf("value present in the list\n");
+    return Success;
 
     case 'l':
     display(list);
