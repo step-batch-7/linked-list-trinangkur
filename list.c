@@ -224,6 +224,10 @@ Status clear_list(List_ptr list) {
   return Success;
 }
 
+void destroy_list(List_ptr list) {
+  clear_list(list);
+  free(list);
+}
 
 void display(List_ptr list) {
   Node_ptr p_walk = list->head;

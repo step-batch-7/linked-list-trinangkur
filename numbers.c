@@ -104,5 +104,6 @@ int main(void)
     scanf("%c",&menu);
   }
   
+  destroy_list(list);
   return 0;
 }
