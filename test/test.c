@@ -137,6 +137,33 @@ void test_remove_at(void) {
   printf("passed...\n");
 }
 
+void test_remove_first_occurrence(void) {
+  printf("\ntesting remove_first_occurrence\n\n");
+  List_ptr list = create_list();
+  add_to_end(list, 5);
+  add_to_end(list, 5);
+  printf("\tShould first match only\n");
+  assert(remove_first_occurrence(list, 5));
+  assert(list->count == 1);
+  assert(list->head->value == 5);
+  assert(list->last->value == 5);
+  printf("passed...\n");
+
+  printf("\tShould fail if no match exists\n");
+  assert(remove_first_occurrence(list, 1) == 0);
+  assert(list->count == 1);
+  assert(list->head->value == 5);
+  assert(list->last->value == 5);
+  printf("passed...\n");
+  
+  printf("\tShould clear list if the list has only one element and that element matches\n");
+  assert(remove_first_occurrence(list, 5));
+  assert(list->count == 0);
+  assert(list->head == NULL);
+  assert(list->last == NULL);
+  printf("passed...\n");
+}
+
 int main(void)
 {
   test_add_to_end();
@@ -146,5 +173,6 @@ int main(void)
   test_remove_from_start();
   test_remove_from_end();
   test_remove_at();
+  test_remove_first_occurrence();
   return 0;
 }
