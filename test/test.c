@@ -142,21 +142,21 @@ void test_remove_first_occurrence(void) {
   List_ptr list = create_list();
   add_to_end(list, 5);
   add_to_end(list, 5);
-  printf("\tShould first match only\n");
+  printf("\tShould remove first match only\n");
   assert(remove_first_occurrence(list, 5));
   assert(list->count == 1);
   assert(list->head->value == 5);
   assert(list->last->value == 5);
   printf("passed...\n");
 
-  printf("\tShould fail if no match exists\n");
+  printf("\tShould not able to remove if no matches exist\n");
   assert(remove_first_occurrence(list, 1) == 0);
   assert(list->count == 1);
   assert(list->head->value == 5);
   assert(list->last->value == 5);
   printf("passed...\n");
-  
-  printf("\tShould clear list if the list has only one element and that element matches\n");
+
+  printf("\tShould remove all elements while matching with only element in list\n");
   assert(remove_first_occurrence(list, 5));
   assert(list->count == 0);
   assert(list->head == NULL);
