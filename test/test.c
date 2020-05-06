@@ -116,6 +116,27 @@ void test_remove_from_end(void) {
   printf("passed...\n");
 }
 
+void test_remove_at(void) {
+  printf("\ntesting remove_at\n");
+  List_ptr list = create_list();
+  printf("\t should not be able to remove anything while list is empty\n");
+  assert(remove_at(list,0) == 0);
+  printf("passed...\n");
+
+  add_to_start(list,5);
+  add_to_start(list,3);
+
+  printf("\t should be able to remove one value from a given valid position\n");
+  assert(remove_at(list,1));
+  assert(list->count == 1);
+  assert(list->head->value == 3);
+  printf("passed...\n");
+
+  printf("\t should not be able to remove elment for a invalid position\n");
+  assert(remove_at(list,1) == 0);
+  printf("passed...\n");
+}
+
 int main(void)
 {
   test_add_to_end();
@@ -124,5 +145,6 @@ int main(void)
   test_add_unique();
   test_remove_from_start();
   test_remove_from_end();
+  test_remove_at();
   return 0;
 }
