@@ -67,10 +67,26 @@ void test_insert_at(void){
   printf("passed...\n");
 }
 
+void test_add_unique(void) {
+  printf("\ntesting add_unique\n");
+  List_ptr list = create_list();
+  printf("\t should have one element while list is empty and value is inserted\n");
+  assert(add_unique(list,5));
+  assert(list->count == 1);
+  assert(list->head->value == 5);
+  printf("passed...\n");
+
+  printf("\t should not add the same value which has been inserted\n");
+  assert(add_unique(list,5) == 0);
+  assert(list->count == 1);
+  printf("passed...\n");
+}
+
 int main(void)
 {
   test_add_to_end();
   test_add_to_start();
   test_insert_at();
+  test_add_unique();
   return 0;
 }
