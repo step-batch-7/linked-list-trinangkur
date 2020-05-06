@@ -138,7 +138,7 @@ void test_remove_at(void) {
 }
 
 void test_remove_first_occurrence(void) {
-  printf("\ntesting remove_first_occurrence\n\n");
+  printf("\ntesting remove_first_occurrence\n");
   List_ptr list = create_list();
   add_to_end(list, 5);
   add_to_end(list, 5);
@@ -164,6 +164,28 @@ void test_remove_first_occurrence(void) {
   printf("passed...\n");
 }
 
+void test_remove_all_occurrence(void) {
+  printf("\ntesting remove_all_occurrences\n");
+  List_ptr list = create_list();
+  add_to_end(list, 5);
+  add_to_end(list, 3);
+  add_to_end(list, 3);
+
+  printf("\tShould fail if no matches found\n");
+  assert(remove_all_occurrences(list, 0) == 0);
+  assert(list->count == 3);
+  assert(list->head->value == 5);
+  assert(list->last->value == 3);
+  printf("passed...\n");
+
+  printf("\tShould remove all mathces\n");
+  assert(remove_all_occurrences(list, 3));
+  assert(list->count == 1);
+  assert(list->head->value == 5);
+  assert(list->last->value == 5);
+  printf("passed...\n");
+}
+
 int main(void)
 {
   test_add_to_end();
@@ -174,5 +196,6 @@ int main(void)
   test_remove_from_end();
   test_remove_at();
   test_remove_first_occurrence();
+  test_remove_all_occurrence();
   return 0;
 }
